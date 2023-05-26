@@ -1,0 +1,33 @@
+server:
+  port: 8016
+
+spring:
+  profiles:
+    active: default
+#  cloud:
+#    config:
+#      enabled : true
+  application:
+    name: notify-app
+
+# Eureka client configuration
+eureka:
+  client:
+    registry-fetch-interval-seconds: 30
+    instance-info-replication-interval-seconds: 30
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+hystrix:
+  command:
+    # Hystrix will observe the requests in rolling window of size 10. If 50% of these requests fail, then it will open the circuit.
+    # When circuit is open, Hystrix won't attempt to call underlying service and directly call the fallback logic
+    circuitBreaker:
+    requestVolumeThreshold: 10
+    #The circuit open duration or sleep duration is 10s or 10000 Millis
+    #When this duration lapses, circuit breaker will close the circuit and check if underlying service has recovered or not.
+    # ===> If YES, then circuit will be closed
+    # ===> If Still NO, then it will open the circuit again for 10s and route all calls to fallback before retrying again.
+    sleepWindowInMilliseconds: 10000
+    errorThresholdPercentage: 50

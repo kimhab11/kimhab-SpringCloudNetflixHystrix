@@ -1,0 +1,21 @@
+server:
+  port: 8015
+
+spring:
+  profiles:
+    active: default
+  cloud:
+    config:
+      enabled : true
+  application:
+    name: cricket-app
+
+# Eureka client configuration
+eureka:
+  client:
+    registry-fetch-interval-seconds: 30
+    instance-info-replication-interval-seconds: 30
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka

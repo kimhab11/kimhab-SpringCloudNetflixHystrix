@@ -1,0 +1,23 @@
+server:
+  port: 8013
+spring:
+  application:
+    name: ratting-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/api-db-test
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 123
+
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
